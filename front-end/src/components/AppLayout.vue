@@ -14,7 +14,6 @@ function toggleSidebar() {
   sidebarOpened.value = !sidebarOpened.value
 }
 
-// :class="{'-ml-[200px]': !sidebarOpened}"
 </script>
 <template>
     <div class="min-h-full bg-gray-200 flex">
@@ -23,7 +22,7 @@ function toggleSidebar() {
       <div class="flex-1">
         <Navbar @toggle-sidebar="toggleSidebar"></Navbar>
         <main class="p-6">
-          <router-view> hello </router-view>
+          <router-view></router-view>
         </main>
       </div>
     </div>

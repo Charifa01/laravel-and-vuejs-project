@@ -5,6 +5,11 @@ import ResetPassword from '../views/ResetPassword.vue';
 import RequestPassword from '../views/RequestPassword.vue';
 import AppLayout from '../components/AppLayout.vue';
 import NotFoundPage from '../views/NotFoundPage.vue';
+import projects from '../views/projects/projects.vue';
+import orders from '../views/orders/orders.vue';
+import users from '../views/users/users.vue';
+import Customers from '../views/customers/Customers.vue';
+import Reports from '../views/Reports/Reports.vue';
 
 
 const routes = [
@@ -24,27 +29,27 @@ const routes = [
             {
                 path: '/products',
                 name: 'products',
-                component: Dashboard
+                component: projects
             },
             {
                 path: '/orders',
                 name: 'orders',
-                component: Dashboard
+                component: orders
             },
             {
                 path: '/users',
                 name: 'users',
-                component: Dashboard
+                component: users
             },
             {
                 path: '/customers',
                 name: 'customers',
-                component: Dashboard
+                component: Customers 
             },
             {
                 path: '/reports',
                 name: 'reports',
-                component: Dashboard
+                component: Reports
             },
 
         ]
