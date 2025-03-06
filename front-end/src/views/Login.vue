@@ -1,6 +1,6 @@
 <script setup>
     import AuthLayout from '../components/AuthLayout.vue';
-    import router from '../router';
+    import router from '../router/index'
     import { ref } from 'vue';
     import store from '../store';
     // import axios from "axios";
@@ -16,17 +16,17 @@
 
 function login() {
   loading.value = true;
-  axiosClient.post('/login', user)
+  //axiosClient.post('/login', user)
   // let data = axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`, user)
-   //store.dispatch('login', user)
+   store.dispatch('login', user)
     .then(() => {
       loading.value = false;
       router.push({name: 'app.dashboard'})
     })
     .catch(({response}) => {
       console.log(response)
-      // loading.value = false;
-      // errorMsg.value = response.message;
+      loading.value = false;
+      errorMsg.value = response.message;
     })
 }
 

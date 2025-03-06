@@ -14,14 +14,10 @@ import store from '../store';
 
 
 const routes = [
-    {
-        path: '/',
-        redirect: '/app'
-      },
       {
-        path: '/app',
+        path: '/',
         name: 'app',
-        redirect: '/app/dashboard',
+        redirect: '/dashboard',
         component: AppLayout,
         meta: {
           requiresAuth: true
@@ -29,27 +25,27 @@ const routes = [
         children: [
           {
             path: 'dashboard',
-            name: 'app.dashboard',
+            name: 'dashboard',
             component: Dashboard
           },
           {
             path: 'products',
-            name: 'app.products',
+            name: 'products',
             component: Projects
           },
           {
             path: 'users',
-            name: 'app.users',
+            name: 'users',
             component: Users
           },
           {
             path: 'customers',
-            name: 'app.customers',
+            name: 'customers',
             component: Customers
           },
           {
             path: 'orders',
-            name: 'app.orders',
+            name: 'orders',
             component: Orders
           },
           {
