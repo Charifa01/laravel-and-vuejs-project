@@ -11,6 +11,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use App\Http\Requests\ProductRequest;
 
 class ProductContoller extends Controller
 {
@@ -65,9 +66,29 @@ class ProductContoller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $data = $request->validated();
+        $data['updated_by'] = $request->user()->id;
+
+        /** @var \Illuminate\Http\UploadedFile $image */
+        $image = $data['image'] ?? null;
+        // Check if image was given and save on local file system
+        if ($image) {
+            $relativePath = $this->saveImage($image);
+            $data['image'] = URL::to(Storage::url($relativePath));
+            $data['image_mime'] = $image->getClientMimeType();
+            $data['image_size'] = $image->getSize();
+
+            // If there is an old image, delete it
+            if ($product->image) {
+                Storage::deleteDirectory('/public/' . dirname($product->image));
+            }
+        }
+
+        $product->update($data);
+
+        return new ProductResource($product);
     }
 
     /**
